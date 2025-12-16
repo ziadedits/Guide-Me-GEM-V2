@@ -1,0 +1,103 @@
+:root {
+    --gold: #D4AF37;
+    --dark-blue: #0F1F38;
+    --glow: 0 0 15px var(--gold);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0; background: #050505 url('assets/papyrus_bg.jpg') fixed center/cover;
+    color: var(--gold); font-family: 'Cinzel', serif; overflow-x: hidden;
+}
+
+body.rtl { direction: rtl; font-family: 'Cairo', sans-serif; }
+.rtl-text { display: none; } .ltr-text { display: inline; }
+.rtl .rtl-text { display: inline; } .rtl .ltr-text { display: none; }
+
+/* PHARAOH CARD SYSTEM */
+.pharaoh-card, .detail-content {
+    background: rgba(15, 31, 56, 0.95);
+    border: 3px solid var(--gold);
+    padding: 30px; border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.9), var(--glow);
+    text-align: center; width: 95%; max-width: 450px; margin: auto;
+}
+
+.detail-content { max-width: 800px; text-align: justify; }
+
+.scroll-text-box {
+    height: 250px;
+    overflow-y: auto;
+    margin: 20px 0;
+    padding-right: 10px;
+    line-height: 1.8;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.pharaoh-input {
+    width: 100%; padding: 12px; margin-bottom: 12px; background: rgba(0,0,0,0.6);
+    border: 1px solid var(--gold); color: white; border-radius: 5px;
+}
+
+.pharaoh-btn {
+    background: var(--dark-blue); color: var(--gold); border: 2px solid var(--gold);
+    padding: 12px; cursor: pointer; text-transform: uppercase; font-weight: bold; width: 100%; transition: 0.3s;
+}
+.pharaoh-btn:hover { background: var(--gold); color: black; box-shadow: var(--glow); }
+
+.back-control { width: auto; padding: 10px 25px; margin-bottom: 15px; }
+
+/* ARTIFACT CARDS */
+.grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; padding: 20px; }
+.card {
+    border: 2px solid var(--gold); width: 180px; padding: 10px; background: black;
+    cursor: pointer; position: relative; overflow: hidden; border-radius: 8px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.card:hover { transform: translateY(-12px); box-shadow: 0 0 25px var(--gold); border-color: #fff; }
+.card img { width: 100%; height: 140px; object-fit: cover; }
+
+/* TRANSITION JAWS */
+#transition-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2000; display: none; }
+.jaw-upper, .jaw-lower {
+    width: 100%; height: 50%; background: #0a0a0a url('assets/sphinx_texture.jpg') center/cover;
+    position: absolute; transition: transform 1s ease-in-out;
+}
+.jaw-upper { top: 0; transform: translateY(-100%); border-bottom: 4px solid var(--gold); }
+.jaw-lower { bottom: 0; transform: translateY(100%); border-top: 4px solid var(--gold); }
+
+/* PAGE VISIBILITY */
+.page-screen {
+    display: none; min-height: 100vh; width: 100%; align-items: center;
+    justify-content: center; flex-direction: column; padding: 80px 20px;
+}
+.active-page { display: flex; }
+
+/* CHAT SYSTEM */
+.chat-window {
+    position: fixed; bottom: 85px; right: 25px; width: 300px; height: 400px;
+    background: rgba(15, 31, 56, 0.98); border: 2px solid var(--gold);
+    display: none; flex-direction: column; z-index: 1500; border-radius: 10px;
+}
+.chat-header { background: var(--gold); color: black; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; }
+.chat-body { flex: 1; padding: 10px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+.bot-msg { background: rgba(212, 175, 55, 0.2); padding: 8px; border-radius: 5px; border-left: 3px solid var(--gold); font-size: 0.9rem; }
+.user-msg { background: var(--dark-blue); padding: 8px; border: 1px solid var(--gold); align-self: flex-end; color: var(--gold); font-size: 0.9rem; }
+
+/* FIXED BUTTONS */
+.mute-btn { position: fixed; top: 20px; left: 20px; z-index: 1500; cursor: pointer; }
+.gallery-home-btn { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 1500; display: none; cursor: pointer; }
+.gallery-home-btn img { width: 50px; border-radius: 50%; border: 2px solid var(--gold); }
+.chat-icon { position: fixed; bottom: 20px; right: 20px; z-index: 1500; cursor: pointer; }
+.chat-icon img { width: 55px; filter: drop-shadow(var(--glow)); }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+.golden-border-text {
+    text-shadow: 0 0 10px var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}

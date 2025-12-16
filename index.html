@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Guide Me G.E.M | Digital Tomb</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="ltr">
+
+    <audio id="bg-music" loop><source src="assets/arabian_nights.mp3" type="audio/mpeg"></audio>
+    <audio id="sfx-whoosh"><source src="assets/whoosh.mp3" type="audio/mpeg"></audio>
+
+    <div class="mute-btn" onclick="toggleMusic()">
+        <img id="mute-icon" src="assets/sound_off.png" alt="Mute" style="width:40px;">
+    </div>
+
+    <div class="gallery-home-btn" id="home-btn" onclick="goToPage('page-language')">
+        <img src="assets/pharaoh_head_icon.png" alt="Home">
+    </div>
+
+    <div id="transition-overlay">
+        <div class="jaw-upper"></div>
+        <div class="jaw-lower"></div>
+    </div>
+
+    <main id="app-container">
+        <section id="page-signup" class="active-page page-screen">
+            <div class="pharaoh-card">
+                <h1 class="main-title">Guide Me G.E.M</h1>
+                <p class="subtitle">Enter the Digital Tomb</p>
+                <form onsubmit="event.preventDefault(); goToPage('page-language'); startExperience();">
+                    <input type="text" placeholder="Full Name" required class="pharaoh-input">
+                    <input type="email" placeholder="Email Address" required class="pharaoh-input">
+                    <button type="submit" class="pharaoh-btn">Unlock Entrance</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="page-language" class="page-screen">
+            <div class="pharaoh-card">
+                <h2 class="main-title">Path Selection</h2>
+                <div class="lang-options">
+                    <button class="pharaoh-btn" onclick="setLanguage('ar')">العربية</button>
+                    <button class="pharaoh-btn" onclick="setLanguage('en')">English</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-gallery" class="page-screen">
+            <h2 id="gallery-title" class="golden-border-text">The Royal Collection</h2>
+            <div class="grid">
+                <div class="card" onclick="showArtifact('tut')">
+                    <img src="assets/tut_mask.jpg" alt="Tutankhamun">
+                    <h3>Tutankhamun</h3>
+                </div>
+                <div class="card" onclick="showArtifact('ramses')">
+                    <img src="assets/ramses.jpg" alt="Ramses">
+                    <h3>Ramses II</h3>
+                </div>
+                <div class="card" onclick="showArtifact('boat')">
+                    <img src="assets/boat.jpg" alt="Solar Boat">
+                    <h3>Solar Boat</h3>
+                </div>
+                <div class="card" onclick="showArtifact('rosetta')">
+                    <img src="assets/rosetta.jpg" alt="Rosetta Stone">
+                    <h3>Rosetta Stone</h3>
+                </div>
+                <div class="card" onclick="showArtifact('amenhotep')">
+                    <img src="assets/amenhotep.jpg" alt="Amenhotep">
+                    <h3>Amenhotep III</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-details" class="page-screen">
+            <button class="pharaoh-btn back-control" onclick="goToPage('page-gallery')">
+                <span class="rtl-text">⬅ العودة</span><span class="ltr-text">⬅ Back</span>
+            </button>
+            <div class="detail-content">
+                <div class="image-container"><img id="detail-img" src="" alt="Artifact"></div>
+                <h2 id="detail-title" class="golden-border-text"></h2>
+                <div class="scroll-text-box">
+                    <p id="detail-desc"></p>
+                </div>
+                <div class="fun-fact-box">
+                    <h4>✨ <span class="rtl-text">حقيقة ممتعة</span><span class="ltr-text">Fun Fact</span></h4>
+                    <p id="detail-fact"></p>
+                </div>
+                <p class="loc-tag">📍 <b>Location:</b> <span id="detail-loc"></span></p>
+            </div>
+        </section>
+    </main>
+
+    <div class="chat-icon" onclick="toggleChat()">
+        <img src="assets/chatbot_icon.png" alt="Bot">
+    </div>
+    <div class="chat-window" id="chat-window">
+        <div class="chat-header">
+            <span>Pharaoh AI Guide</span>
+            <span onclick="toggleChat()" style="cursor:pointer">✖</span>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <div class="bot-msg">Welcome, traveler. I hold the secrets of the G.E.M. Ask me about Tut, Ramses, or the Boats.</div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chat-input" placeholder="Type here..." onkeypress="handleChat(event)">
+            <button onclick="handleChat({key:'Enter'})">➔</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
